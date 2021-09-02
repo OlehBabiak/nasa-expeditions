@@ -18,6 +18,7 @@ function NasaContextProvider({children}) {
     const [isLoading, setIsLoading] = useState(false);
     const [selectedRover, setSelectedRover] = useState(roversArr[0]);
     const [selectedCamera, setSelectedCamera] = useState(camerasArray[0]);
+    const [loadedItemNumber, setLoadedItemNumber] = useState(10);
 
 
     const urlBuilder = (api, rover, sol, api_key) => `${api}/${rover}/photos?sol=${sol}&api_key=${api_key}`
@@ -41,14 +42,11 @@ function NasaContextProvider({children}) {
 
     const selectCameraChangeHandler = (e) => {
         setSelectedCamera(e.target.value)
-
     }
+
     const filteredCameras = roverImageArray.filter(el => {
         return el.camera.name === selectedCamera
     });
-
-
-    const [loadedItemNumber, setLoadedItemNumber] = useState(10);
 
     const visibleRenderArray =  [...filteredCameras.slice(0,loadedItemNumber)]
 
@@ -58,7 +56,6 @@ function NasaContextProvider({children}) {
         setLoadedItemNumber(loadedItemNumber + 5)
     }
 
-    console.log(loadedItemNumber)
     return (
         <NasaContext.Provider value={{
             roverImageArray,

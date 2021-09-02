@@ -2,7 +2,7 @@ import styled from "styled-components"
 
 const HomeWrapper = styled.div`
   width: 100%;
-  height: inherit;
+min-height: 100vh;
   font-size: 1.5em;
   color: azure;
   margin-top: 17vh;

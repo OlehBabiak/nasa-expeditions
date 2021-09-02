@@ -6,7 +6,6 @@ import {Menu, MenuItem} from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 
 
-
 function Navigation() {
 
     const [anchorEl, setAnchorEl] = React.useState(null);
@@ -30,7 +29,9 @@ function Navigation() {
                         color: 'floralwhite',
                         fontSize: '1em'
                     }}
-                    aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
+                    aria-controls="simple-menu"
+                    aria-haspopup="true"
+                    onClick={handleClick}>
                     Open Menu
                 </Button>
                 <Menu
@@ -42,7 +43,14 @@ function Navigation() {
                 >
                     {
                         urls.map(item => (
-                            <MenuItem onClick={handleClose}><NavLink style={{margin: 'auto'}} to={item.url} exact>{item.title}</NavLink></MenuItem>
+                            <MenuItem
+                                key={item.title}
+                                onClick={handleClose}>
+                                <NavLink
+                                    style={{margin: 'auto'}}
+                                    to={item.url}
+                                    exact>{item.title}</NavLink>
+                            </MenuItem>
                         ))
                     }
                 </Menu>
@@ -50,7 +58,11 @@ function Navigation() {
             <DeskTopMenu>
                 {
                     urls.map(item => (
-                        <NavLink style={{margin: 'auto'}} to={item.url} exact>{item.title}</NavLink>
+                        <NavLink
+                            key={item.title}
+                            style={{margin: 'auto'}}
+                            to={item.url}
+                            exact>{item.title}</NavLink>
                     ))
                 }
             </DeskTopMenu>

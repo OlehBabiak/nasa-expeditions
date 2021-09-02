@@ -19,17 +19,27 @@ function NasaContextProvider({children}) {
     const [selectedRover, setSelectedRover] = useState(roversArr[0]);
     const [selectedCamera, setSelectedCamera] = useState(camerasArray[0]);
     const [loadedItemNumber, setLoadedItemNumber] = useState(10);
+    const [error, setError] = useState(null);
 
 
-    const urlBuilder = (api, rover, sol, api_key) => `${api}/${rover}/photos?sol=${sol}&api_key=${api_key}`
+    const urlBuilder = (rover, sol) => `${api}/${rover}/photos?sol=${sol}&api_key=${api_key}`
 
     const fetchData = async (rover, sol) => {
-        setIsLoading(true)
-        const resp = await fetch(urlBuilder(api, rover, sol, api_key))
-        const json = await resp.json()
-        const {photos} = json
-        setRoverImageArray(photos)
-        setIsLoading(false)
+        fetch(urlBuilder(rover, sol))
+            .then(response => {
+                if(!response.ok){
+                    throw Error('Unfortunately, could not fetch data...')
+                }
+                return response.json()})
+            .then(data => {
+                setRoverImageArray(data.photos);
+                setIsLoading(true);
+                setError(null)
+            })
+            .catch(err => {
+                setError(err.message)
+                setIsLoading(true)
+            })
     }
 
     const choiceSolHandler = (e) => {
@@ -77,7 +87,8 @@ function NasaContextProvider({children}) {
             filteredCameras,
             showMoreHandler,
             visibleRenderArray,
-            setLoadedItemNumber
+            setLoadedItemNumber,
+            error
         }}>
             {children}
         </NasaContext.Provider>

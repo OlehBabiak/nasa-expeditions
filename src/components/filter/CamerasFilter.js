@@ -6,7 +6,7 @@ import NativeSelect from '@material-ui/core/NativeSelect';
 import InputBase from '@material-ui/core/InputBase';
 import NasaContext from "../../context/NasaContext";
 import {camerasArray} from "../../constants";
-import {Test} from "./CamerasFilterStyled";
+import {FilterWrapper} from "./CamerasFilterStyled";
 
 const BootstrapInput = withStyles((theme) => ({
     root: {
@@ -55,7 +55,7 @@ export default function CamerasFilter() {
     const classes = useStyles();
 
     return (
-        <Test>
+        <FilterWrapper>
             <FormControl className={classes.margin}>
                 <InputLabel htmlFor="demo-customized-select-native">Rover</InputLabel>
                 <NativeSelect
@@ -90,6 +90,6 @@ export default function CamerasFilter() {
                 />
             </FormControl>
 
-        </Test>
+        </FilterWrapper>
     );
 }

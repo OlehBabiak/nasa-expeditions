@@ -1,6 +1,6 @@
 import styled from "styled-components"
 
-const Test = styled.div`
+const FilterWrapper = styled.div`
 margin: 20px auto;
   @media (max-width: 767px) {
     display: grid;
@@ -10,5 +10,5 @@ margin: 20px auto;
 `
 
 export {
-    Test
+    FilterWrapper
 }

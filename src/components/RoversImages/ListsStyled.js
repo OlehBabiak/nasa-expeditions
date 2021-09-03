@@ -14,7 +14,16 @@ const LoaderWrapper = styled.div`
   text-align: center;
 `
 
+const ErrorWrapper = styled.div`
+  margin-top: 10vh;
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-items: center;
+  text-align: center;
+`
+
 export {
     ImageListWrapper,
-    LoaderWrapper
+    LoaderWrapper,
+    ErrorWrapper
 }

@@ -25,22 +25,23 @@ function NasaContextProvider({children}) {
     const urlBuilder = (rover, sol) => `${api}/${rover}/photos?sol=${sol}&api_key=${api_key}`
 
     const fetchData = async (rover, sol) => {
-        fetch(urlBuilder(rover, sol))
-            .then(response => {
-                if(!response.ok){
-                    throw Error('Unfortunately, could not fetch data...')
-                }
-                return response.json()})
-            .then(data => {
-                setRoverImageArray(data.photos);
-                setIsLoading(true);
-                setError(null)
-            })
-            .catch(err => {
-                setError(err.message)
-                setIsLoading(true)
-            })
+        setIsLoading(false)
+        try {
+            const resp = await fetch(urlBuilder(rover, sol))
+            if (!resp.ok) {
+                throw  Error('Unfortunately, could not fetch data...')
+            } else {
+                const json = await resp.json()
+                const {photos} = json
+                setRoverImageArray(photos)
+        }
+        }catch (err) {
+            setError(err.message)
+        }
+        setIsLoading(true)
     }
+
+    console.log(error)
 
     const choiceSolHandler = (e) => {
         setSol(e.target.value)

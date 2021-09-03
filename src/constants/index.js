@@ -2,6 +2,7 @@ export const rovers = {
     CURIOSITY: 'curiosity',
     OPPORTUNITY: 'opportunity',
     SPIRIT: 'spirit',
+    HGJHGJHGJH: 'JHKJHKH',
 }
 
 export const logo = "https://www.nasa.gov/sites/all/themes/custom/nasatwo/images/nasa-logo.svg"

@@ -7,22 +7,18 @@ function NasaContextProvider({children}) {
     const {api} = url
     const {CURIOSITY, OPPORTUNITY, SPIRIT} = rovers
     const api_key = key
-    const roversArr = []
-
-    for (let roversKey in rovers) {
-        roversArr.push(rovers[roversKey])
-    }
 
     const [roverImageArray, setRoverImageArray] = useState([]);
     const [sol, setSol] = useState(1);
     const [isLoading, setIsLoading] = useState(false);
-    const [selectedRover, setSelectedRover] = useState(roversArr[0]);
+    const [selectedRover, setSelectedRover] = useState(CURIOSITY);
     const [selectedCamera, setSelectedCamera] = useState(camerasArray[0]);
     const [loadedItemNumber, setLoadedItemNumber] = useState(10);
     const [error, setError] = useState(null);
 
 
     const urlBuilder = (rover, sol) => `${api}/${rover}/photos?sol=${sol}&api_key=${api_key}`
+
 
     const fetchData = async (rover, sol) => {
         setIsLoading(false)
@@ -80,7 +76,6 @@ function NasaContextProvider({children}) {
             setSol,
             isLoading,
             choiceSolHandler,
-            roversArr,
             selectedRover,
             changeRover,
             selectCameraChangeHandler,

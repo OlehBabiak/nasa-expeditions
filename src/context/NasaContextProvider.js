@@ -19,7 +19,6 @@ function NasaContextProvider({children}) {
 
     const urlBuilder = (rover, sol) => `${api}/${rover}/photos?sol=${sol}&api_key=${api_key}`
 
-
     const fetchData = async (rover, sol) => {
         setIsLoading(false)
         try {
